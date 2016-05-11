@@ -1,1 +1,28 @@
-ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDUiyrDnk0xYH0lFYuKw+SMxEB76M/VT+apeKjVJEJL7hdYcWyEZ7gsOXiW53/p0l8I08v3JqPX4nsjW3R+cdhXNnUT/Ik1BBEroCQTQyAq4V4    UTgZ/t1oD4cZZn1R/eCEGh/MFh2IzMBkpXqM8XpCq3u1Q0wEuC+hMXR3TuDcULGxTcJWm+XqaLh/SMIiqb/G/4KsIS58l7Nfiss/RCXIu53Yk9Ar435hSKLOriVmrqlCTBvYItivmY4KzTX0DVG    vapPB/aa+2BsQhTy16tslu4D5xkG4Sz6qx7Bz/1CPfD9jBKAt4gq0p364jCPnlKQaiMNRNBpuOaV+rXrbhYP9Z 790736503@qq.com
+# Compiled Object files
+*.slo
+*.lo
+*.o
+*.obj
+
+# Precompiled Headers
+*.gch
+*.pch
+
+# Compiled Dynamic libraries
+*.so
+*.dylib
+*.dll
+
+# Fortran module files
+*.mod
+
+# Compiled Static libraries
+*.lai
+*.la
+*.a
+*.lib
+
+# Executables
+*.exe
+*.out
+*.app
