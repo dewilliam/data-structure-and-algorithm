@@ -1,5 +1,6 @@
 #include <iostream>
 using namespace std;
+
 void quicksort(int* s,int start,int end){
 	if(start>=end)
 		return;
