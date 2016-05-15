@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include <vector>
 #include <fstream>
 using namespace std;
@@ -25,35 +26,66 @@ void generate_data(){
 		out>>data;
 	}
 }
-int main(){
-	// generate_data();
-	TrieNode root;
-	// build(root);
+void build(TrieNode* root){
 	string result_file="english_data_result";
 	fstream out(result_file.c_str(),ios::in);
 	string data;
 	out>>data;
 	while(!out.eof()){
-		cout<<data<<endl;
 		string::iterator ite=data.begin();
+		TrieNode* parent_node=root;
 		while(ite!=data.end()){
-			TrieNode parent_node=root;
+			*ite=tolower(*ite);
 			int pos=*ite-'a';
 			int h=ite-data.begin();//节点的深度
-			if(parent_node.childnodes[pos]==NULL){
+			if(parent_node->childnodes[pos]==NULL){
 				TrieNode* this_node=new TrieNode;
 				this_node->nodechar=*ite;
 				this_node->freq=1;
-				parent_node.childnodes[pos]=this_node;
-				parent_node=*this_node;
+				parent_node->childnodes[pos]=this_node;
+				parent_node=this_node;
 			}else{
-				TrieNode this_node=*(parent_node.childnodes[pos]);
-				this_node.freq++;
+				TrieNode* this_node=parent_node->childnodes[pos];
+				this_node->freq++;
 				parent_node=this_node;
 			}
-			parent_node.is_word=true;
-			++ite;
+			ite++;
+			if(ite==data.end())
+				break;
 		}
+		parent_node->is_word=true;
 		out>>data;
+	}
+}
+int find(TrieNode& root,string check){
+	string::iterator ite=check.begin();
+	TrieNode parent_node=root;
+	while(ite!=check.end()){
+		*ite=tolower(*ite);
+		int pos=(*ite-'a');
+		if(parent_node.childnodes[pos]==NULL){
+			cout<<"middle"<<endl;
+			return 0;
+		}
+		else
+			parent_node=*(parent_node.childnodes[pos]);
+		++ite;
+	}
+	if(parent_node.is_word==false){
+		cout<<"last"<<endl;
+		return 0;
+	}
+	else
+		return parent_node.freq;
+}
+int main(){
+	generate_data();
+	TrieNode root;
+	build(&root);
+	while(true){
+		string check;
+		cin>>check;
+		int times=find(root,check);
+		cout<<"times:"<<times<<endl;
 	}
 }
