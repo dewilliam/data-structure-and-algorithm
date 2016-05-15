@@ -9,6 +9,7 @@ public:
 	int freq;
 	bool is_word;//从根节点到该节点是否是一个完整的已存在的单词
 	TrieNode* childnodes[26];
+	vector<int> word_pos;
 	TrieNode():nodechar(),freq(0),is_word(false){
 		for(int i=0;i<26;++i)
 			childnodes[i]=NULL;
@@ -31,6 +32,7 @@ void build(TrieNode* root){
 	fstream out(result_file.c_str(),ios::in);
 	string data;
 	out>>data;
+	int lines=1;
 	while(!out.eof()){
 		string::iterator ite=data.begin();
 		TrieNode* parent_node=root;
@@ -54,38 +56,53 @@ void build(TrieNode* root){
 				break;
 		}
 		parent_node->is_word=true;
+		parent_node->word_pos.push_back(lines);
 		out>>data;
+		lines++;
 	}
 }
-int find(TrieNode& root,string check){
+void find(TrieNode& root,string check){
 	string::iterator ite=check.begin();
 	TrieNode parent_node=root;
 	while(ite!=check.end()){
 		*ite=tolower(*ite);
 		int pos=(*ite-'a');
 		if(parent_node.childnodes[pos]==NULL){
-			cout<<"middle"<<endl;
-			return 0;
+			cout<<"times:0"<<endl;
+			return;
 		}
 		else
 			parent_node=*(parent_node.childnodes[pos]);
 		++ite;
 	}
 	if(parent_node.is_word==false){
-		cout<<"last"<<endl;
-		return 0;
+		cout<<"times:0"<<endl;
+		return;
 	}
-	else
-		return parent_node.freq;
+	else{
+		cout<<"times:"<<parent_node.freq<<endl;
+		vector<int>::iterator lines=parent_node.word_pos.begin();
+		cout<<"pos(line):";
+		while(lines!=parent_node.word_pos.end()){
+			cout<<*lines<<",";
+			++lines;
+		}
+		cout<<endl;
+	}
 }
 int main(){
+	int start=clock();
+	cout<<"generate_data"<<endl;
 	generate_data();
+	printf("time: %.6lf\n",double(clock()-start)/CLOCKS_PER_SEC);
 	TrieNode root;
+	start=clock();
+	cout<<"build"<<endl;
 	build(&root);
+	printf("time: %.6lf\n",double(clock()-start)/CLOCKS_PER_SEC);//1200万个单词，大概3.5秒左右
 	while(true){
 		string check;
 		cin>>check;
-		int times=find(root,check);
-		cout<<"times:"<<times<<endl;
+		find(root,check);
 	}
 }
