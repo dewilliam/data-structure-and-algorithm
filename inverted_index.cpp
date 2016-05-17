@@ -40,14 +40,18 @@ void process_data(){
 	buffer<<fs.rdbuf();
 	string data(buffer.str());
 	for(int i=0;i<data.size();++i)
-		if(data[i]=='.'||data[i]==','||data[i]=='"'||data[i]==':'||data[i]==';'||data[i]=='!'||data[i]=='?')
-			data[i]=' ';
-		else if(data[i]=='\''&&data[i+1]=='s'){
+		if(data[i]=='\''&&data[i+1]=='s'){
 			data[i]=' ';
 			data[i+1]=' ';
 		}else if(data[i]=='\''&&data[i+1]=='t'){
 			data[i]=data[i+1];
 			data[i+1]=' ';
+		}else if(data[i]=='\''&&data[i+1]=='r'&&data[i+2]=='e'){
+			data[i]=data[i+1];
+			data[i+1]=data[i+2];
+			data[i+2]=' ';
+		}else if(data[i]<'A'||(data[i]>'Z'&&data[i]<'a')||data[i]>'z'){
+			data[i]=' ';
 		}
 	fs.seekp(0,ios::beg);
 	fs<<data;
