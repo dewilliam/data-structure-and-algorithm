@@ -45,6 +45,9 @@ void process_data(){
 		else if(data[i]=='\''&&data[i+1]=='s'){
 			data[i]=' ';
 			data[i+1]=' ';
+		}else if(data[i]=='\''&&data[i+1]=='t'){
+			data[i]=data[i+1];
+			data[i+1]=' ';
 		}
 	fs.seekp(0,ios::beg);
 	fs<<data;
