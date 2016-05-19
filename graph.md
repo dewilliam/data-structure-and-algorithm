@@ -1,3 +1,4 @@
+<h2>16年5月19，周四</h2>
 用邻接表保存图信息。<br>
 在磁盘中用一下形式保存：<br>
 1 beijing 3 2 30 3 60 5 100<br>
@@ -13,3 +14,8 @@
 每一个顶点的所有pair都放在一个vector里面。<br>
 定义一个Node类，保存顶点信息（顶点编号，顶点名称，指向对应vector的指针）。<br>
 Node --> vector(pair(int,int),pair(int,int),...)。<br>
+<br>
+dijkstra算法时，从源顶点开始，遍历它的邻接表中的顶点，更新每个顶点的distance值，找到最小的那个，重复执行<br>
+每执行一次上述逻辑，list_num计数器减一，直到list_num==0为止<br>
+<br>
+不知道对不对，，，晚上试一下<br>
