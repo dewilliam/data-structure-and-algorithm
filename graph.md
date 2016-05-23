@@ -90,3 +90,6 @@ level存储的是顶点距离汇点t的距离（层数）<br>
   end while<br>
 4.结束。<br>
 参考了博客：<a href="http://www.voidcn.com/blog/cymxyym/article/p-3614436.html">预流推进</a><br>
+<br>
+已经写完了，放在了graph_preflow.cpp里面<br>
+网络流问题就看到这了。。<br>
