@@ -89,3 +89,4 @@ level存储的是顶点距离汇点t的距离（层数）<br>
 &emsp;&emsp;把u的level加1，压入到Q中。<br>
   end while<br>
 4.结束。<br>
+参考了博客：<a href="http://www.voidcn.com/blog/cymxyym/article/p-3614436.html">预流推进</a><br>
