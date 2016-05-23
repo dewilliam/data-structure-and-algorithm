@@ -81,7 +81,7 @@ level存储的是顶点距离汇点t的距离（层数）<br>
 &emsp;Q.pop();<br>
 &emsp;当u为源顶点或者在顶点中存在比u的level少1的顶点v时:<br>
 &emsp;&emsp;向v推进最大流（c(u,v)）；（u点的R值减少c(u,v)，v点的R值增加c(u,v)）<br>
-&emsp;&emsp;如果推进之前的R[u]<c(u,v)，则推进的流值为R[u]<br>
+&emsp;&emsp;如果推进之前的R[u]小于c(u,v)，则推进的流值为R[u]<br>
 &emsp;&emsp;响应的反向弧值增加，正向弧值减少（c(u,v)减少推进流值，c(v,u)增加推进的流值）<br>
 &emsp;&emsp;如果v点是汇点t，则全局的最大流量值（所求的结果）+=推进的流量值<br>
 &emsp;&emsp;如果v不是源顶点s也不是汇点t，则Q.push(v)<br>
