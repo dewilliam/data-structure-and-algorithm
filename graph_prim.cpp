@@ -1,3 +1,6 @@
+//用最小堆实现图的最小生成树的prim算法
+//author:william xie
+//time:16年5月23
 #include <iostream>
 #include <fstream>
 #include <sstream>
@@ -6,8 +9,8 @@ using namespace std;
 class node{
 public:
 	int serial_num;
-	bool is_used;
-	vector<int> childs;
+	bool is_used;//是否已经被加入到最小生成树中
+	vector<int> childs;//生成树中的子节点
 	node(int s):serial_num(s),is_used(false){}
 	node& operator=(node no){
 		serial_num=no.serial_num;
@@ -18,8 +21,8 @@ public:
 class edge{
 public:
 	double weight;
-	int tail;
-	int head;
+	int tail;//边的尾节点在node_list中的下标
+	int head;//边的头节点在node_list中的下标
 	edge():weight(0),tail(0),head(0){}
 	edge(double w,int t,int h):weight(w),tail(t),head(h){}
 	edge& operator=(edge e){
@@ -32,11 +35,10 @@ public:
 	}
 };
 int root;
-vector<node> node_list;
-// vector<node> used_list;
-vector<edge> edges;
+vector<node> node_list;//存放所有的节点
+vector<edge> edges;//存放边，用此数组进行最小堆操作
 
-void percolate_down(int i,int current_size){
+void percolate_down(int i,int current_size){//递归下滤操作
 	int left=i<<1;
 	if(left>current_size)
 		return;
@@ -53,9 +55,9 @@ void percolate_down(int i,int current_size){
 		percolate_down(min_one,current_size);
 	}
 }
-void adjust(int current_size){
+void adjust(int current_size){//调整最小堆
 	for(int i=current_size>>1;i>=1;--i)
-		percolate_down(i,current_size);
+		percolate_down(i,current_size);//所有有子节点的节点进行下滤操作。
 }
 void heap(){
 }
@@ -64,18 +66,21 @@ void prim(int& n,int& m){
 	int nodes_num=n;
 	int current_size=m;
 	adjust(current_size);
-	edge top=edges[1];
-	node_list[top.tail].is_used=true;
+	edge top=edges[1];//首先对最小边操作，因为它和以后的判断逻辑不一样
+	node_list[top.tail].is_used=true;//把首尾节点都加到树中。
 	node_list[top.head].is_used=true;
-	node_list[top.tail].childs.push_back(top.head);//
-	root=top.tail;
+	node_list[top.tail].childs.push_back(top.head);//把头节点加入到尾节点的孩子数组中，构成树结构
+	root=top.tail;//把树根存储起来
 	nodes_num--;
 	edges[1]=edges[current_size];
 	edges.erase(edges.begin()+current_size);
 	current_size--;
 	percolate_down(1,current_size);
-	while(nodes_num>1){
+	while(nodes_num>1){//nodes_num不需要到0，到1时所有节点已经都加到树里面了。
 		top=edges[1];
+		//如果top满足条件，就像对第一条边那样处理。但要把不在树中的节点加到树中节点的孩子中。（注意顺序）
+		//如果top不能满足条件，就调整最小堆。
+		//具体解释见<a href="https://github.com/dewilliam/data-structure-and-algorithm/blob/master/%E5%9B%BE-%E6%97%A5%E8%AE%B0.md">图-日记.md中</a>
 		while(current_size){
 			if(node_list[top.tail].is_used!=node_list[top.head].is_used){
 				if(node_list[top.tail].is_used)
@@ -90,7 +95,6 @@ void prim(int& n,int& m){
 				current_size--;
 				break;
 			}else{
-				cout<<"cu:"<<current_size<<endl;
 				edge temp=edges[1];
 				edges[1]=edges[current_size];
 				edges[current_size--]=edges[1];
@@ -104,7 +108,7 @@ void prim(int& n,int& m){
 		}
 	}
 }
-void tree_out(int r,int h){
+void tree_out(int r,int h){//递归遍历整棵树。。。
 	for(int i=0;i<h;++i)
 		cout<<"     ";
 	cout<<node_list[r].serial_num<<endl;
@@ -115,6 +119,7 @@ void tree_out(int r,int h){
 	}
 }
 int main(){
+	//读取文件数据
 	int n,m;
 	string file="data/dinic_data";
 	fstream out(file.c_str(),ios::in);
@@ -124,6 +129,7 @@ int main(){
 	ss_init>>n>>m;
 	edge ed;
 	edges.push_back(ed);
+	//生成边集合
 	for(int i=1;i<=m;++i){
 		string data;
 		getline(out,data);
@@ -134,6 +140,7 @@ int main(){
 		edge ee(w,x,y);
 		edges.push_back(ee);
 	}
+	//生成顶点集合。。
 	node title(0);
 	node_list.push_back(title);
 	for(int i=1;i<=n;++i){
