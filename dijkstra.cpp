@@ -1,3 +1,7 @@
+//实现了最简单的dijkstra算法
+//没有用到Fibonacci heap
+//author:william xie
+//time:16年5月13
 #include <iostream>
 #include <vector>
 #include <fstream>
