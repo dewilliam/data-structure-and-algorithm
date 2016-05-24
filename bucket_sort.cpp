@@ -1,3 +1,6 @@
+//实现了最简单的桶排序算法
+//author:william xie
+//time:16年5月12
 #include <iostream>
 using namespace std;
 
