@@ -8,6 +8,8 @@
 // 然后对文档中每一个单词创建索引。
 // 之后对vector进行排序。
 // 最后把所有的索引输出到文件中。
+//author:william xie
+//time:16年5月17
 */
 #include <iostream>
 #include <sstream>
