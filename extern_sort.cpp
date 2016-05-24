@@ -1,3 +1,11 @@
+//实现了大数据的外部排序
+//用到了归并排序，最小堆，选择置换方式
+//选择置换：生成临时排序文件
+//最小堆：用来把临时文件归并成一个整体排序文件
+//注意磁盘io的效率，这是该算法的主要时间消耗
+//空间消耗很少
+///author：william xie
+//time:16年5 月13
 #include <iostream>
 #include <fstream>
 #include <sstream>
