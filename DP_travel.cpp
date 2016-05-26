@@ -1,6 +1,7 @@
 //author:谢添
 //location:北京交通大学 下一代互联网与互联工程国家工程实验室
 //email:mftianxie@gmail.com
+//程序的具体思路和解释看《算法-日记.md》旅游花费部分问题。。。
 #include <iostream>
 #include <fstream>
 #include <sstream>
