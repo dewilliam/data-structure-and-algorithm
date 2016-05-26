@@ -1,3 +1,6 @@
+//author:谢添
+//location:北京交通大学 下一代互联网与互联工程国家工程实验室
+//email:mftianxie@gmail.com
 #include <iostream>
 #include <string>
 #include <vector>
