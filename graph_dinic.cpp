@@ -1,6 +1,8 @@
 //用邻接矩阵，层次数组实现了一个基本的dinic算法
 //详细解释和写算法的过程见《图-日志.md》
-//author:william xie
+//author:谢添
+//location:北京交通大学 下一代互联网与互联工程国家工程实验室
+//email:mftianxie@gmail.com
 //time:16年5月22
 #include <iostream>
 #include <fstream>
