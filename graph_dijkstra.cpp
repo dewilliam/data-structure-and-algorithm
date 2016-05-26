@@ -1,7 +1,7 @@
 //实现了最简单的dijkstra算法
 //没有用到Fibonacci heap
 //author:谢添
-//location:北京交通大学 下一代互联网与互联工程国家工程实验室
+//location:北京交通大学 下一代互联网与互联设备国家工程实验室
 //email:mftianxie@gmail.com
 //time:16年5月13
 #include <iostream>
