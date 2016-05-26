@@ -5,7 +5,7 @@
 //注意磁盘io的效率，这是该算法的主要时间消耗
 //空间消耗很少
 //author:谢添
-//location:北京交通大学 下一代互联网与互联工程国家工程实验室
+//location:北京交通大学 下一代互联网与互联设备国家工程实验室
 //email:mftianxie@gmail.com
 //time:16年5 月13
 #include <iostream>
